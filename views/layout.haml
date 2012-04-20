@@ -1,0 +1,15 @@
+!!!5
+%html
+  %head
+    %title Shortenious
+    %link{"rel"=>"stylesheet", "type"=>"text/css", "href"=>"stylesheets/style.css"}
+  %body
+    #logo
+      %a{"href" => "/"}
+        %h1 Shortenious
+    #content
+      = yield
+    %footer
+      %a{"href" => "api"} API
+      %a Github
+

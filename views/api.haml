@@ -1,0 +1,41 @@
+%h2 API
+%p
+  Basically:
+  %span.code POST /?id=myid&link=mylink
+  %span.code GET /myid.
+  In more detail:
+
+%table
+  %tr
+    %th Method
+    %th Parameters
+    %th Response
+  %tr
+    %td GET /:id
+    %td
+      %ul
+        %li noredirect (not required, defaults to false)
+    %td If a link with the given id doesn't exist, an error is returned. Otherwise, it either redirects to the corresponding link or returns it, depending on the parameter noredirect.
+  %tr
+    %td POST /
+    %td 
+      %ul
+        %li id (required, should consist only of letters, numbers and "-_.\")
+        %li link (required, should be a valid link)
+    %td If the parameters are valid, saves the given id/link pair and returns OK
+
+%h3 Errors
+%p
+  Errors look like this:
+  %span.code Error: [DESCRIPTION]
+  List of possible errors:
+%ul
+  %li Error: invalid id
+  %li Error: invalid link
+  %li Error: id not found
+  %li Error: invalid id
+  %li Error: id already used
+  %li Error: id not found
+  %li Error: unknown database error
+
+
