@@ -6,6 +6,7 @@ gem 'haml'
 gem 'sass'
 gem 'redis'
 gem 'coffee-script'
+gem 'therubyracer'
 
 group :test do
   gem 'rspec'
