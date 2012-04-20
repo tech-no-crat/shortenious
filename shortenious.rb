@@ -6,6 +6,7 @@ set :haml, :format => :html5
 configure do
   require 'redis'
   require 'haml'
+  require 'coffee_script'
   require 'sass'
 
   puts ENV["REDISTOGO_URL"]
@@ -15,10 +16,13 @@ configure do
   else
     REDIS= Redis.new
   end
+
+  DOMAIN = "shortenious.chrisp.gr"
 end
 
+
 def save(id, link)
-  blacklist = ["stylesheets", "about", "contact", "api"]
+  blacklist = ["stylesheets", "javascripts", "about", "contact", "api"]
   if (id =~ /^[a-zA-Z0-9\-_]*$/).nil? or id.length<3
     "Error: invalid id"
   elsif link.length < 3 or blacklist.include? link or not link =~ %r{\Ahttps?://}
@@ -27,12 +31,12 @@ def save(id, link)
     # id/link are valid
     if REDIS.get(id).nil?
       if (REDIS.set id, link) == "OK"
-        "OK"
+        "OK: #{DOMAIN}/#{id}"
       else
         "Error: Unknown database error"
       end
     else
-      "Error: id already used"
+      "Error: id already in use"
     end
   end
 end
@@ -68,7 +72,12 @@ post "/" do
 end
 
 
-
 get "/stylesheets/style.css" do
+  content_type "text/css"
   scss :style
+end
+
+get "/javascripts/app.js" do
+  content_type "text/javascript"
+  coffee :app
 end

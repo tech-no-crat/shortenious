@@ -57,6 +57,32 @@ a {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
   }
+
+  #result {
+    clear: both;
+    width: 400px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    background-color: #EEE;
+    border: 2px solid #CCC;
+    border-top-width: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: none;
+    font-size: 14px;
+    &.success {
+      display: block;
+      color: #004014;
+      background-color: #cdeb8b
+    }
+    &.failure {
+      display: block;
+      color: #6E0000;
+      background: #F53333;
+    }
+  }
+
   input.txt {
     height: 25px;
     font-size: 20px;
